@@ -1,6 +1,5 @@
 package telegram;
 
-import telegram.message.QuoteRequest;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;

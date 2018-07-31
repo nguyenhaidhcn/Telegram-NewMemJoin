@@ -1,5 +1,6 @@
 package telegram;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,18 +9,19 @@ public class ShareObject {
     private final static ShareObject instance = new ShareObject();
 
 
-    private ShareObject() {};
+
+    public String token;
+
+    public ShareObject() {};
 
 
-    public static TelegramBot telegramBot;
+    public TelegramBot telegramBot;
 
-//    @Value("${bot.token}")
-    public static String token;
 //    @Value("${chat.id}")
-    public static long chat_id =-295025948;
+    public long chat_id =-295025948;
 
-    public static long chat_id_balance =-237206539;
+    public long chat_id_balance =-237206539;
 
-    public static long chat_id_hedge =-195924043;
+    public long chat_id_hedge =-195924043;
 
 }
