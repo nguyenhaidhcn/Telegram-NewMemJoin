@@ -9,8 +9,6 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 @Component
 public class ThreadTelegram  implements Runnable{
 
-    final
-    ShareObject shareObject;
 
 
     @Override
@@ -23,11 +21,9 @@ public class ThreadTelegram  implements Runnable{
         // Register our bot
         try {
 
-            String token = shareObject.token;
-            shareObject.telegramBot = new TelegramBot();
 
-
-            botsApi.registerBot(shareObject.telegramBot);
+            ShareObject.telegramBot = new TelegramBot();
+            botsApi.registerBot(ShareObject.telegramBot);
 
             Thread.sleep(7);
         } catch (TelegramApiException e) {
@@ -38,7 +34,6 @@ public class ThreadTelegram  implements Runnable{
     }
 
     @Autowired
-    public ThreadTelegram(ShareObject shareObject) {
-        this.shareObject = shareObject;
+    public ThreadTelegram() {
     }
 }

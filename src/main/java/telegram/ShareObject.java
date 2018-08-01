@@ -9,19 +9,19 @@ public class ShareObject {
     private final static ShareObject instance = new ShareObject();
 
 
-
-    public String token;
+    public static String botName;
+    public static String token;
 
     public ShareObject() {};
 
 
-    public TelegramBot telegramBot;
+    public static TelegramBot telegramBot;
 
 //    @Value("${chat.id}")
-    public long chat_id =-295025948;
+    public static long chat_id =-295025948;
 
-    public long chat_id_balance =-237206539;
+    public static long chat_id_balance =-237206539;
 
-    public long chat_id_hedge =-195924043;
+    public static long chat_id_hedge =-195924043;
 
 }

@@ -18,7 +18,7 @@ public class GatewayApplication {
 
 //		ShareObjectQuote.token =  token;
 //		ShareObjectQuote.chat_id =  new Long(chat_id);
-		ThreadTelegram threadTelegram = new ThreadTelegram(new ShareObject());
+		ThreadTelegram threadTelegram = new ThreadTelegram();
 		new Thread(threadTelegram).start();
 		SpringApplication.run(GatewayApplication.class, args);
 	}
