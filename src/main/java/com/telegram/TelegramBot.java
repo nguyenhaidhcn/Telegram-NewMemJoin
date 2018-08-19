@@ -105,8 +105,8 @@ public class TelegramBot extends TelegramLongPollingBot  {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
 
-            String input = "{\"user_id\":%d,\"firstName\":\"%s\", \"lastName\":\"%s\", \"languageCode\":\"%s\"}";;
-            input = String.format(input, userDB.user_id, userDB.first_name, userDB.last_name, userDB.language_code);
+            String input = "{\"user_id\":%d,\"first_name\":\"%s\", \"last_name\":\"%s\", \"user_name\":\"%s\", \"languageCode\":\"%s\"}";;
+            input = String.format(input, userDB.user_id, userDB.first_name, userDB.last_name,userDB.user_name, userDB.language_code);
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
