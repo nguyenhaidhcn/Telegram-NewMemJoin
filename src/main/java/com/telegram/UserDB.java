@@ -14,25 +14,15 @@ public class UserDB {
     private Long id;
 
     public Integer user_id; ///< Unique identifier for this user or bot
-    public String firstName; ///< User‘s or bot’s first name
-    public Boolean isBot; ///< True, if this user is a bot
-    public String lastName; ///< Optional. User‘s or bot’s last name
-    public String userName; ///< Optional. User‘s or bot’s username
-    public String languageCode; ///< Optional. IETF language tag of the user's language
+    public String first_name; ///< User‘s or bot’s first name
+    public Boolean is_bot; ///< True, if this user is a bot
+    public String last_name; ///< Optional. User‘s or bot’s last name
+    public String user_name; ///< Optional. User‘s or bot’s username
+    public String language_code; ///< Optional. IETF language tag of the user's language
 
     public UserDB() {
     }
 
-    @Override
-    public String toString() {
-        return "UserDB{" +
-                "user_id=" + user_id +
-                ", firstName='" + firstName + '\'' +
-                ", isBot=" + isBot +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", languageCode='" + languageCode + '\'' +
-                '}';
-    }
+
 }
 

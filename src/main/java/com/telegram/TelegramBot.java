@@ -2,9 +2,11 @@ package com.telegram;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 
 import java.io.BufferedReader;
@@ -25,15 +27,15 @@ public class TelegramBot extends TelegramLongPollingBot  {
     @Override
     public void onUpdateReceived(Update update) {
 
-//        long chat_id = update.getMessage().getChatId();
+        long chat_id = update.getMessage().getChatId();
         // We check if the update has a message and the message has text
 
 
-        UserDB userDB1 = new UserDB();
-        userDB1.firstName ="test";
-        userDB1.lastName = "test";
-        userDB1.user_id = 2144;
-        Save(userDB1);
+//        UserDB userDB1 = new UserDB();
+//        userDB1.firstName ="test";
+//        userDB1.lastName = "test";
+//        userDB1.user_id = 2144;
+//        Save(userDB1);
 
 
         if (update.getMessage() != null)
@@ -44,11 +46,30 @@ public class TelegramBot extends TelegramLongPollingBot  {
                System.out.println("New Member:" + users.toString());
                for(User user:users)
                {
+
+                   //send msg
+
+                   String msg = "Hi @%s\n" +
+                           "Thank you for expressing interest in our Reefic Protocol project.";
+                   msg = String.format(msg, user.getUserName());
+                   SendMessage message_ugrent = new SendMessage() // Create a message object object
+                           .setChatId(chat_id)
+                           .setText(msg);
+                   try {
+                       execute(message_ugrent); // Sending our message object to user
+                   } catch (TelegramApiException e) {
+                       e.printStackTrace();
+                   }
+
+
                    UserDB userDB = new UserDB();
-                   userDB.firstName = user.getFirstName();
-                   userDB.lastName = user.getLastName();
+                   userDB.first_name = user.getFirstName();
+                   userDB.last_name = user.getLastName();
+                   userDB.user_name = user.getUserName();
                    userDB.user_id = user.getId();
                    Save(userDB);
+
+
                }
 
            }
@@ -62,14 +83,14 @@ public class TelegramBot extends TelegramLongPollingBot  {
     public String getBotUsername() {
         // Return bot username
         // If bot username is @TelegramBot, it must return 'TelegramBot'
-        return "sys_snap_bot";
+        return "ReeficBot";
     }
 
     @Override
     public String getBotToken() {
         // Return bot token from BotFather
 //        return ShareObjectQuote.token;
-        return "525968331:AAHjiranH89hLS60L02FMW7wOaWB0gVjiIw";
+        return "695906149:AAHR8UYCLBehY3eSQSjUlKilT2CBqtlRJpM";
 
     }
 
@@ -85,7 +106,7 @@ public class TelegramBot extends TelegramLongPollingBot  {
             conn.setRequestProperty("Content-Type", "application/json");
 
             String input = "{\"user_id\":%d,\"firstName\":\"%s\", \"lastName\":\"%s\", \"languageCode\":\"%s\"}";;
-            input = String.format(input, userDB.user_id, userDB.firstName, userDB.lastName, userDB.languageCode);
+            input = String.format(input, userDB.user_id, userDB.first_name, userDB.last_name, userDB.language_code);
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
