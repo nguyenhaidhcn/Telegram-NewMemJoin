@@ -1,10 +1,8 @@
-package telegram;
+package com.telegram;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 @Entity
