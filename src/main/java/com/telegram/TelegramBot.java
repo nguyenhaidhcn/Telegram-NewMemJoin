@@ -31,10 +31,9 @@ public class TelegramBot extends TelegramLongPollingBot  {
         // We check if the update has a message and the message has text
 
 
+//
 //        UserDB userDB1 = new UserDB();
-//        userDB1.firstName ="test";
-//        userDB1.lastName = "test";
-//        userDB1.user_id = 2144;
+//        userDB1.user_name = "@test";
 //        Save(userDB1);
 
 
@@ -104,8 +103,8 @@ public class TelegramBot extends TelegramLongPollingBot  {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-
-            String input = "{\"user_name\":\"@%s\"}";;
+//            userDB.user_name = "@"+userDB.user_name;
+            String input = "{\"user_name\":\"%s\"}";;
             input = String.format(input,userDB.user_name);
 
             OutputStream os = conn.getOutputStream();

@@ -32,6 +32,7 @@ public class UseController {
     @PostMapping("/user")
     public UserDB createNote(@Valid @RequestBody UserDB userDB) {
 
+        userDB.user_name = "@" + userDB.user_name;
         return userRepository.save(userDB);
     }
 
