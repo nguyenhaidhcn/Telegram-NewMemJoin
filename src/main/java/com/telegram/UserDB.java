@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_telegram")
 @EntityListeners(AuditingEntityListener.class)
 public class UserDB {
     @Id
