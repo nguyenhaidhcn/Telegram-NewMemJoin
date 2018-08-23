@@ -48,17 +48,17 @@ public class TelegramBot extends TelegramLongPollingBot  {
 
                    //send msg
 
-                   String msg = "Hi @%s\n" +
-                           "Thank you for expressing interest in our Reefic Protocol project.";
-                   msg = String.format(msg, user.getUserName());
-                   SendMessage message_ugrent = new SendMessage() // Create a message object object
-                           .setChatId(chat_id)
-                           .setText(msg);
-                   try {
-                       execute(message_ugrent); // Sending our message object to user
-                   } catch (TelegramApiException e) {
-                       e.printStackTrace();
-                   }
+//                   String msg = "Hi @%s\n" +
+//                           "Thank you for expressing interest in our Reefic Protocol project.";
+//                   msg = String.format(msg, user.getUserName());
+//                   SendMessage message_ugrent = new SendMessage() // Create a message object object
+//                           .setChatId(chat_id)
+//                           .setText(msg);
+//                   try {
+//                       execute(message_ugrent); // Sending our message object to user
+//                   } catch (TelegramApiException e) {
+//                       e.printStackTrace();
+//                   }
 
 
                    UserDB userDB = new UserDB();
