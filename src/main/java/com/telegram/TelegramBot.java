@@ -82,14 +82,14 @@ public class TelegramBot extends TelegramLongPollingBot  {
     public String getBotUsername() {
         // Return bot username
         // If bot username is @TelegramBot, it must return 'TelegramBot'
-        return "ReeficBot";
+        return "gamoo_bot";
     }
 
     @Override
     public String getBotToken() {
         // Return bot token from BotFather
 //        return ShareObjectQuote.token;
-        return "695906149:AAHR8UYCLBehY3eSQSjUlKilT2CBqtlRJpM";
+        return "595768215:AAE3CPairRD5THlxhO9BZR0WCNuJ0D1NvD4";
 
     }
 
