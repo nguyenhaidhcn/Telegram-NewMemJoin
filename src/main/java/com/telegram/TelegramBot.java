@@ -2,11 +2,12 @@ package com.telegram;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.api.objects.User;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 import java.io.BufferedReader;
@@ -20,9 +21,12 @@ import java.util.List;
 @Component
 public class TelegramBot extends TelegramLongPollingBot  {
 
+    public String botname;
 
-    @Autowired
-    UserRepository userRepository;
+    public String token;
+
+    public String msg;
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -30,7 +34,7 @@ public class TelegramBot extends TelegramLongPollingBot  {
         long chat_id = update.getMessage().getChatId();
         // We check if the update has a message and the message has text
 
-
+//        System.out.println("Msg:" + update.getMessage().getText());
 //
 //        UserDB userDB1 = new UserDB();
 //        userDB1.user_name = "@test";
@@ -48,25 +52,20 @@ public class TelegramBot extends TelegramLongPollingBot  {
 
                    //send msg
 
-//                   String msg = "Hi @%s\n" +
-//                           "Thank you for expressing interest in our Reefic Protocol project.";
-//                   msg = String.format(msg, user.getUserName());
-//                   SendMessage message_ugrent = new SendMessage() // Create a message object object
-//                           .setChatId(chat_id)
-//                           .setText(msg);
-//                   try {
-//                       execute(message_ugrent); // Sending our message object to user
-//                   } catch (TelegramApiException e) {
-//                       e.printStackTrace();
-//                   }
+                   String text = "Hi @%s\n" + msg;
+
+                   text = String.format(text, user.getUserName());
+                   SendMessage message_ugrent = new SendMessage() // Create a message object object
+                           .setChatId(chat_id)
+                           .setText(text);
+                   try {
+                       execute(message_ugrent); // Sending our message object to user
+                   } catch (TelegramApiException e) {
+                       e.printStackTrace();
+                   }
 
 
-                   UserDB userDB = new UserDB();
-//                   userDB.first_name = user.getFirstName();
-//                   userDB.last_name = user.getLastName();
-                   userDB.user_name = user.getUserName();
-//                   userDB.user_id = user.getId();
-                   Save(userDB);
+
 
 
                }
@@ -82,58 +81,19 @@ public class TelegramBot extends TelegramLongPollingBot  {
     public String getBotUsername() {
         // Return bot username
         // If bot username is @TelegramBot, it must return 'TelegramBot'
-        return "gamoo_bot";
+        return botname;
     }
 
     @Override
     public String getBotToken() {
         // Return bot token from BotFather
 //        return ShareObjectQuote.token;
-        return "595768215:AAE3CPairRD5THlxhO9BZR0WCNuJ0D1NvD4";
+        return token;
 
     }
 
 
-    public void Save(UserDB userDB)
-    {
-        try {
 
-            URL url = new URL("http://localhost:8091/api/user");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-//            userDB.user_name = "@"+userDB.user_name;
-            String input = "{\"user_name\":\"%s\"}";;
-            input = String.format(input,userDB.user_name);
-
-            OutputStream os = conn.getOutputStream();
-            os.write(input.getBytes());
-            os.flush();
-
-            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
-            }
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
-
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-
-            conn.disconnect();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-    }
 
 
 }
