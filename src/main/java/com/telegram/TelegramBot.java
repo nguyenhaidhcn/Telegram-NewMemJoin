@@ -54,7 +54,10 @@ public class TelegramBot extends TelegramLongPollingBot  {
 
                    String text = "Hi @%s\n" + msg;
 
-                   text = String.format(text, user.getUserName());
+                   if(user.getUserName() != null)
+                        text = String.format(text, user.getUserName());
+                   else
+                       text = String.format(text, user.getFirstName() + user.getLastName());
                    SendMessage message_ugrent = new SendMessage() // Create a message object object
                            .setChatId(chat_id)
                            .setText(text);
