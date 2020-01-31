@@ -56,7 +56,7 @@ public class TelegramService {
 			TelegramBot telegramBot = new TelegramBot();
 			telegramBot.token = botToken;
 			telegramBot.botname = botName;
-			telegramBot.msg = botMsg;
+			telegramBot.msg = "đã tham gia vào cộng đồng SnapBots Vietnam, nền tảng trí thông minh nhân tao phi tập trung (Decentralized AI) đầu tiên trên thế giới tích hợp Machine Learning Bots.";
 //			threadTelegram.botsApi = botsApi;
 //			threadTelegram.telegramBot = telegramBot;
 
